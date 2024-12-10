@@ -1,4 +1,4 @@
-training = True
+training = False
 file = "exemple" if training else "inputs"
 answer = 0
 
@@ -6,8 +6,9 @@ rules = {}
 updates = []
 
 def isPagesNumberOK(firstNumber, secondNumber):
-    if firstNumber in rules[secondNumber] :
-        return False 
+    if secondNumber in rules and firstNumber in rules[secondNumber] :
+        return False
+    return True
 
 with open(file, 'r') as file:
     checkingRules = True
@@ -32,21 +33,23 @@ with open(file, 'r') as file:
                 for pageNumber in pageNumbers:
                     update.append(int(pageNumber))
                 updates.append(update)
-            
+
+sumOfMiddleNumbers = 0
 
 for update in updates:
-    print(update)
     isPageOrderCorrect = True
 
-    for pageId in range(len(update)):
-        for otherPageId in range(pageId, len(update)):
-            if not isPagesNumberOK(update[pageId],update[otherPageId])
+    for pageId in range(len(update)-1):
+        for otherPageId in range(pageId+1, len(update)):
+            #print(f"Checking {pageId} {otherPageId}")
+            if not isPagesNumberOK(update[pageId],update[otherPageId]):
+                isPageOrderCorrect = False
+    
+    if isPageOrderCorrect:
+        print(update)
+        sumOfMiddleNumbers += (update[int(len(update)/2)])
 
-
-
-
-
-
-print(f"Answer = {answer}")
+    
+print(f"sumOfMiddleNumbers = {sumOfMiddleNumbers}")
 
 
