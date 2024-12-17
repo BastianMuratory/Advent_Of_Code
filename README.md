@@ -83,7 +83,16 @@ advent-of-code-2024/
 | 8   | ✅      | ✅      |
 | 9   | ✅      | ✅      |
 | 10   | ✅      | ✅      |
-| 11   | ❌      | ❌      |
+| 11   | ✅      | ✅      |
+| 12   | ❌      | ❌      |
 | ... | ...    | ...    |
 
 ---
+
+
+## 📅 Notes
+
+### day 11 
+
+Puzzle 1 took around 92.27 seconds un-optimised. After optimisation (needed for puzzle 2) the code was 23068 times faster
+puzzle 2 took 0.1 second with the optimised code ... and i'm too scared to check with the un-optimized one
