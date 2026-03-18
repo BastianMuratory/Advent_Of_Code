@@ -10,6 +10,6 @@ with open(file, 'r') as file:
 
 
 
-print(f"Answer = {answer}")
+print(f"\nAnswer = {answer}")
 print("--- %s seconds ---" % (time.time() - start_time))
 
