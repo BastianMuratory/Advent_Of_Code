@@ -1,5 +1,5 @@
 import time
-training = True
+training = False
 start_time = time.time()
 file = "exemple" if training else "inputs"
 answer = 0
@@ -42,8 +42,8 @@ with open(file, 'r') as file:
                 machineParsingProgress=2
 
             elif machineParsingProgress == 2: # checking for Prize
-                PrizeX = int(words[1])# + 10000000000000
-                PrizeY = int(words[2])# + 10000000000000
+                PrizeX = int(words[1]) + 10000000000000
+                PrizeY = int(words[2]) + 10000000000000
                 machineParsingProgress=0
             
             # When the machine has been parsed
@@ -58,16 +58,15 @@ with open(file, 'r') as file:
                 #print(f"PrizeX={PrizeX} PrizeY={PrizeY}")
 
                 # calculate B presses to reach the designated prize: 
-                B_Press = (PrizeY - (AY * PrizeX) / AX - (BX * AY) / AX ) / (-AY / AX + BY)
+                B_Press = (PrizeY * AX - PrizeX * AY) / (BY * AX - BX * AY)
                 A_Press = (PrizeY - B_Press * BY) / AY
 
+                if A_Press.is_integer() and B_Press.is_integer():
+                    print(f"{A_Press}*AX + {B_Press}*BX = {A_Press*AX + B_Press*BX}")
+                    cost = A_Press * PRICE_A + B_Press * PRICE_B
 
-                        
-                print(f"{A_Press}*AX + {B_Press}*BX = {A_Press*AX + B_Press*BX}")
-
-                if solutionFound :
-                    print(f"Best solution :{minA}xA + {minB}xB for {minCost} Tokens")
-                    sumToken += minCost
+                    print(f"Best solution :{A_Press}xA + {B_Press}xB for {cost} Tokens")
+                    sumToken += cost
 
 print(f"Answer = {sumToken}")
 print("--- %s seconds ---" % (time.time() - start_time))
